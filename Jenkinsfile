@@ -22,9 +22,13 @@ pipeline {
 
         stage('Push Docker') {
             steps {
-                withCredentials([string(credentialsId: 'dockerhub', variable: 'PASS')]) {
-                    sh "echo $PASS | docker login -u yosraabdelkader5 --password-stdin"
-                    sh 'docker push yosraabdelkader5/devops-yosra'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
+                    sh "docker push yosraabdelkader5/devops-yosra"
                 }
             }
         }
@@ -36,4 +40,3 @@ pipeline {
         }
     }
 }
-s
