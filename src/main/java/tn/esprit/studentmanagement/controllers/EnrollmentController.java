@@ -8,26 +8,35 @@ import tn.esprit.studentmanagement.services.IEnrollment;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Enrollment")
+@RequestMapping("/enrollment")
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class EnrollmentController {
-    IEnrollment enrollmentService;
-    @GetMapping("/getAllEnrollment")
-    public List<Enrollment> getAllEnrollment() { return enrollmentService.getAllEnrollments(); }
 
-    @GetMapping("/getEnrollment/{id}")
-    public Enrollment getEnrollment(@PathVariable Long id) { return enrollmentService.getEnrollmentById(id); }
+    private final IEnrollment enrollmentService;
 
-    @PostMapping("/createEnrollment")
-    public Enrollment createEnrollment(@RequestBody Enrollment enrollment) { return enrollmentService.saveEnrollment(enrollment); }
+    @GetMapping("/getAll")
+    public List<Enrollment> getAllEnrollments() {
+        return enrollmentService.getAllEnrollments();
+    }
 
-    @PutMapping("/updateEnrollment")
+    @GetMapping("/get/{id}")
+    public Enrollment getEnrollment(@PathVariable Long id) {
+        return enrollmentService.getEnrollmentById(id);
+    }
+
+    @PostMapping("/create")
+    public Enrollment createEnrollment(@RequestBody Enrollment enrollment) {
+        return enrollmentService.saveEnrollment(enrollment);
+    }
+
+    @PutMapping("/update")
     public Enrollment updateEnrollment(@RequestBody Enrollment enrollment) {
         return enrollmentService.saveEnrollment(enrollment);
     }
 
-    @DeleteMapping("/deleteEnrollment/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteEnrollment(@PathVariable Long id) {
-        enrollmentService.deleteEnrollment(id); }
+        enrollmentService.deleteEnrollment(id);
+    }
 }

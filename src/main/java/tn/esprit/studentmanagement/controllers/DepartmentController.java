@@ -3,34 +3,40 @@ package tn.esprit.studentmanagement.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.studentmanagement.entities.Department;
-import tn.esprit.studentmanagement.entities.Enrollment;
-import tn.esprit.studentmanagement.services.DepartmentService;
 import tn.esprit.studentmanagement.services.IDepartmentService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Depatment")
+@RequestMapping("/department")   // ✅ correction
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class DepartmentController {
-    private IDepartmentService departmentService;
 
-    @GetMapping("/getAllDepartment")
-    public List<Department> getAllDepartment() { return departmentService.getAllDepartments(); }
+    private final IDepartmentService departmentService;
 
-    @GetMapping("/getDepartment/{id}")
-    public Department getDepartment(@PathVariable Long id) { return departmentService.getDepartmentById(id); }
+    @GetMapping("/getAll")
+    public List<Department> getAllDepartment() {
+        return departmentService.getAllDepartments();
+    }
 
-    @PostMapping("/createDepartment")
-    public Department createDepartment(@RequestBody Department department) { return departmentService.saveDepartment(department); }
+    @GetMapping("/get/{id}")
+    public Department getDepartment(@PathVariable Long id) {
+        return departmentService.getDepartmentById(id);
+    }
 
-    @PutMapping("/updateDepartment")
+    @PostMapping("/create")
+    public Department createDepartment(@RequestBody Department department) {
+        return departmentService.saveDepartment(department);
+    }
+
+    @PutMapping("/update")
     public Department updateDepartment(@RequestBody Department department) {
         return departmentService.saveDepartment(department);
     }
 
-    @DeleteMapping("/deleteDepartment/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteDepartment(@PathVariable Long id) {
-      departmentService.deleteDepartment(id); }
+        departmentService.deleteDepartment(id);
+    }
 }
