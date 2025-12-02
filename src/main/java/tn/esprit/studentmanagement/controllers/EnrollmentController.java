@@ -8,15 +8,15 @@ import tn.esprit.studentmanagement.services.IEnrollment;
 import java.util.List;
 
 @RestController
-@RequestMapping("/enrollment")
+@RequestMapping("/enrollment") // ✔ CORRECTION
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class EnrollmentController {
 
-    private final IEnrollment enrollmentService;
+    private IEnrollment enrollmentService;
 
     @GetMapping("/getAll")
-    public List<Enrollment> getAllEnrollments() {
+    public List<Enrollment> getAllEnrollment() {
         return enrollmentService.getAllEnrollments();
     }
 

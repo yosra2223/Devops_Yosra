@@ -8,12 +8,12 @@ import tn.esprit.studentmanagement.services.IStudentService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/student") // ✔ CORRECTION : cohérent avec context-path
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class StudentController {
 
-    private final IStudentService studentService;
+    private IStudentService studentService;
 
     @GetMapping("/getAll")
     public List<Student> getAllStudents() {

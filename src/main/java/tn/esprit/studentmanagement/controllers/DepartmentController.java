@@ -8,15 +8,12 @@ import tn.esprit.studentmanagement.services.IDepartmentService;
 import java.util.List;
 
 @RestController
-
-@RequestMapping("/Depatment")
-
-
+@RequestMapping("/department") // ✔ CORRECTION
 @CrossOrigin(origins = "http://localhost:4200")
 @AllArgsConstructor
 public class DepartmentController {
 
-    private final IDepartmentService departmentService;
+    private IDepartmentService departmentService;
 
     @GetMapping("/getAll")
     public List<Department> getAllDepartment() {
