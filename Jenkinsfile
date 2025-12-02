@@ -1,58 +1,38 @@
 pipeline {
     agent any
 
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')  
-        IMAGE_NAME = "yosraabdelkader5/devops-yosra"
-        IMAGE_TAG = "1.0.0"
-    }
-
     stages {
-
-        stage('Checkout SCM') {
+        stage('Checkout Git') {
             steps {
-                echo "Checkout Jenkins internal SCM"
                 checkout scm
             }
         }
 
-        stage('Checkout Git') {
+        stage('Maven install') {
             steps {
-                echo "Cloning GitHub repo"
-                git branch: 'main', url: 'https://github.com/yosra2223/Devops_Yosra.git'
+                sh 'mvn clean install -DskipTests'
             }
         }
 
-        stage('Build with Maven') {
+        stage('Build Docker') {
             steps {
-                sh "./mvnw clean package -DskipTests"
+                sh 'docker build -t yosraabdelkader5/devops-yosra .'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Push Docker') {
             steps {
-                sh """
-                docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .
-                """
+                withCredentials([string(credentialsId: 'dockerhub-pass', variable: 'PASS')]) {
+                    sh "echo $PASS | docker login -u yosraabdelkader5 --password-stdin"
+                    sh 'docker push yosraabdelkader5/devops-yosra'
+                }
             }
         }
 
-        stage('Push Docker Image') {
+        stage('Post Actions') {
             steps {
-                sh """
-                echo "${DOCKERHUB_CREDENTIALS_PSW}" | docker login -u "${DOCKERHUB_CREDENTIALS_USR}" --password-stdin
-                docker push ${IMAGE_NAME}:${IMAGE_TAG}
-                """
+                echo 'Pipeline completed successfully!'
             }
-        }
-    }
-
-    post {
-        success {
-            echo "Pipeline completed successfully!"
-        }
-        failure {
-            echo "Pipeline failed."
         }
     }
 }
