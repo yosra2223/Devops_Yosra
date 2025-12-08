@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
+=======
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
 
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
+<<<<<<< HEAD
         <version>3.5.3</version>
         <relativePath/>
     </parent>
@@ -17,6 +24,16 @@
     <artifactId>DTO</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>DTO</name>
+=======
+        <version>3.5.5</version>
+    </parent>
+
+    <groupId>tn.esprit</groupId>
+    <artifactId>student-management</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>student-management</name>
+    <description>student-management</description>
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
 
     <properties>
         <java.version>17</java.version>
@@ -24,17 +41,22 @@
 
     <dependencies>
 
+<<<<<<< HEAD
         <!-- SPRING -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+=======
+        <!-- JPA -->
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
+<<<<<<< HEAD
         <!-- 🔥 FIX : Jakarta EL manquant (corrige ton erreur Jenkins) -->
         <dependency>
             <groupId>org.glassfish</groupId>
@@ -43,12 +65,22 @@
         </dependency>
 
         <!-- DB -->
+=======
+        <!-- Web MVC -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- MySQL Driver -->
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
 
+<<<<<<< HEAD
         <!-- SWAGGER / OPENAPI -->
         <dependency>
             <groupId>org.springdoc</groupId>
@@ -79,16 +111,48 @@
         </dependency>
 
         <!-- TEST -->
+=======
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Spring Boot Test -->
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+<<<<<<< HEAD
+=======
+        <!-- Swagger / OpenAPI -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>2.1.0</version>
+        </dependency>
+
+        <!-- VALIDATION : indispensable !! -->
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish</groupId>
+            <artifactId>jakarta.el</artifactId>
+        </dependency>
+
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
     </dependencies>
 
     <build>
         <plugins>
+<<<<<<< HEAD
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -114,11 +178,16 @@
                 </configuration>
             </plugin>
 
+=======
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a42a870e6ede49066e55fc8707b743897faa6e68
         </plugins>
     </build>
 
