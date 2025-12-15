@@ -1,16 +1,29 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven3'
+    }
+
     stages {
+
         stage('Checkout Git') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Maven install') {
+        stage('Maven Build') {
             steps {
                 sh 'mvn clean install -DskipTests'
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'mvn sonar:sonar'
+                }
             }
         }
 
@@ -32,11 +45,14 @@ pipeline {
                 }
             }
         }
+    }
 
-        stage('Post Actions') {
-            steps {
-                echo 'Pipeline completed successfully!'
-            }
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed ❌'
         }
     }
 }
